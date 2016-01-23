@@ -60,20 +60,33 @@ namespace JuveV.Controllers.Api
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public JsonResult Post([FromBody] PlayerType vm)
         {
+            try
+            {
+                var id = _repository.Create(vm);
+                Response.StatusCode = (int)HttpStatusCode.Created;
+                return Json(new { id = id });
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Error occurred creating player type");
+            }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] PlayerType vm)
         {
+            _repository.Update(vm);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _repository.Delete(id);
         }
     }
 }

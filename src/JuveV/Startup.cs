@@ -48,7 +48,7 @@ namespace JuveV
 
         private static void RegisterRepositories(IServiceCollection services)
         {
-            services.AddTransient<IPlayerTypeRepository<PlayerType>, PlayerTypeRepository>();
+            services.AddScoped<IPlayerTypeRepository<PlayerType>, PlayerTypeRepository>();
         }
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);

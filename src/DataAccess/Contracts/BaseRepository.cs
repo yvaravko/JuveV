@@ -16,17 +16,51 @@ namespace DataAccess.Contracts
 
         public T GetById(int id)
         {
-            return GetDbSet().FirstOrDefault(x => x.Id == id);
+            return DbSet().FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<T> GetList()
         {
-            return GetDbSet().ToList();
+            return DbSet().ToList();
         }
 
-        public DbSet<T> GetDbSet()
+        public void Update(T entity)
+        {
+            if (IsDetached(entity))
+            {
+                DbSet().Attach(entity);
+            }
+
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var entity = GetById(id);
+            if (entity != null)
+            {
+                _context.Entry(entity).State = EntityState.Deleted;
+                _context.SaveChanges();
+            }
+        }
+
+        public int Create(T entity)
+        {
+            var added = DbSet().Add(entity);
+            _context.Entry(entity).State = EntityState.Added;
+            _context.SaveChanges();
+            return added.Entity.Id;
+        }
+
+        public DbSet<T> DbSet()
         {
             return _context.Set<T>();
+        }
+
+        protected bool IsDetached(T entity)
+        {
+            return _context.Entry(entity).State == EntityState.Detached;
         }
     }
 }

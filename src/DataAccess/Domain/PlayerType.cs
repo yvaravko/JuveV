@@ -1,4 +1,6 @@
-﻿namespace DataAccess.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccess.Domain
 {
     public class PlayerType : BaseEntityWithId
     {

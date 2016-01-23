@@ -8,5 +8,11 @@ namespace DataAccess.Contracts
         T GetById(int id);
 
         IEnumerable<T> GetList();
+
+        void Update(T entity);
+
+        void Delete(int id);
+
+        int Create(T entity);
     }
 }
