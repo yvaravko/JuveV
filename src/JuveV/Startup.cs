@@ -5,6 +5,7 @@ using DataAccess.Repos;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 
 namespace JuveV
@@ -18,21 +19,24 @@ namespace JuveV
             services.AddMvc()
                 .AddJsonOptions(
                     opt => { opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); });
-            
+
+            services.AddLogging();
+
             RegisterClasses(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseIISPlatformHandler();
             app.UseStaticFiles();
-
+            loggerFactory.AddDebug(LogLevel.Warning);
+            
             app.UseMvc(
                 config =>
                 {
                     config.MapRoute("Default", "{controller}/{action}/{id?}",
-                        new {controller = "Home", action = "PlayerTypes"});
+                        new {controller = "Admin", action = "Index"});
                 });
 
             using (var ctx = new JuveDbContext())

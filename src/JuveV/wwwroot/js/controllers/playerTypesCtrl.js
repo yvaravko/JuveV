@@ -5,7 +5,7 @@
         vm.editMode = false;
         vm.editedEntity = {};
 
-        $resource('api/playertype').query(function (response) {
+        $resource('/api/playertype').query(function (response) {
             angular.copy(response, vm.playerTypes);
         });
 
@@ -17,12 +17,12 @@
 
         vm.save = function (type) {
             if (type.id) {
-                $resource('api/playertype/:id',
+                $resource('/api/playertype/:id',
                     { id: type.id },
                     { update: { method: 'PUT' } }).update(type);
             } else {
                 type.id = 0;
-                $resource('api/playertype').save(type, function(response) {
+                $resource('/api/playertype').save(type, function(response) {
                     type.id = response.id;
                 });
             }
@@ -45,7 +45,7 @@
 
         vm.delete = function (type) {
             if (confirm("Do you want to delete this row?")) {
-                $resource('api/playertype/:id').delete({ id: type.id });
+                $resource('/api/playertype/:id').delete({ id: type.id });
                 var index = vm.playerTypes.indexOf(type);
                 vm.playerTypes.splice(index, 1);
             }

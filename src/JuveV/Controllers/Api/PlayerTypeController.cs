@@ -3,6 +3,7 @@ using System.Net;
 using DataAccess.Contracts;
 using DataAccess.Domain;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace JuveV.Controllers.Api
 {
@@ -10,10 +11,12 @@ namespace JuveV.Controllers.Api
     public class PlayerTypeController : Controller
     {
         private readonly IPlayerTypeRepository<PlayerType> _repository;
+        private readonly ILogger<PlayerTypeController> _logger;
 
-        public PlayerTypeController(IPlayerTypeRepository<PlayerType> playerTypeRepository)
+        public PlayerTypeController(IPlayerTypeRepository<PlayerType> playerTypeRepository, ILogger<PlayerTypeController> logger)
         {
             _repository = playerTypeRepository;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -33,6 +36,7 @@ namespace JuveV.Controllers.Api
             catch (Exception ex)
             {
                 Response.StatusCode = (int) HttpStatusCode.BadRequest;
+                _logger.LogError("Error occurred getting player types", ex);
                 return Json("Error occurred getting player types");
             }
         }
@@ -54,6 +58,7 @@ namespace JuveV.Controllers.Api
             catch (Exception ex)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                _logger.LogError($"Error occurred getting player type with id = {id}", ex);
                 return Json("Error occurred getting player type");
             }
         }
@@ -71,22 +76,45 @@ namespace JuveV.Controllers.Api
             catch (Exception ex)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                _logger.LogError("Error occurred creating player type", ex);
                 return Json("Error occurred creating player type");
             }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] PlayerType vm)
+        public JsonResult Put(int id, [FromBody] PlayerType vm)
         {
-            _repository.Update(vm);
+            try
+            {
+                _repository.Update(vm);
+                Response.StatusCode = (int) HttpStatusCode.OK;
+                return Json("updated");
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                _logger.LogError($"Error occurred updating player type with id = {id}", ex);
+                return Json("Error occurred updating player type");
+            }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
-            _repository.Delete(id);
+            try
+            {
+                _repository.Delete(id);
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                return Json("deleted");
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                _logger.LogError($"Error occurred deleting player type with id = {id}", ex);
+                return Json("Error occurred deleting player type");
+            }
         }
     }
 }

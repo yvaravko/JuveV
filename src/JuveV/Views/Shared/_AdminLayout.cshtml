@@ -6,17 +6,34 @@
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-<h2>@ViewBag.Title</h2>
-<div>
-    @RenderBody()
+<div class="container-fluid" ng-app="admin-main">
+    <div class="row text-center">
+        <h1>Header will be here</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav top60" ng-controller="navCtrl as vm">
+                <li ng-class="{ active: vm.isActive('/Index') }"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li ng-class="{ active: vm.isActive('/PlayerTypes') }"><a asp-controller="Admin" asp-action="PlayerTypes">Player Types</a></li>
+                <li ng-class="{ active: vm.isActive('/Teams') }"><a asp-controller="Admin" asp-action="Teams">Teams</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            @RenderBody()
+        </div>
+    </div>
 </div>
+
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/lib/angular-route/angular-route.min.js"></script>
     <script src="~/lib/angular-resource/angular-resource.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/main-module.js"></script>
+    <script src="~/js/controllers/navctrl.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

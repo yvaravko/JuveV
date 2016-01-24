@@ -4,24 +4,29 @@ using Microsoft.AspNet.Mvc;
 
 namespace JuveV.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         private readonly IPlayerTypeRepository<PlayerType> _repository;
 
-        public HomeController(IPlayerTypeRepository<PlayerType> repository)
+        public AdminController(IPlayerTypeRepository<PlayerType> repository)
         {
             _repository = repository;
         }
 
-        public string Index()
+        public IActionResult Index()
         {
-            var playerTypes = _repository.GetList();
-            return "Hello from controller: Index";
+            return View();
         }
 
         public IActionResult PlayerTypes()
         {
             return View();
         }
+
+        public IActionResult Teams()
+        {
+            return View();
+        }
+
     }
 }

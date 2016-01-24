@@ -1,0 +1,19 @@
+﻿.error {
+    color: red;
+}
+
+tr.no-border td {
+    border: none !important;
+}
+
+.table.no-border {
+    border: none !important;
+}
+
+.top60 {
+    margin-top: 60px;
+}
+
+li.active {
+    font-weight: bold;  
+}
