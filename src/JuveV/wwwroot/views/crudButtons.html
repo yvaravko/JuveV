@@ -1,0 +1,6 @@
+﻿ <td class="text-center">
+    <button class="btn btn-success btn-sm" ng-click="vm.edit(item)" ng-hide="item.editMode" ng-disabled="vm.editMode"><i class="fa fa-edit"></i></button>
+    <button class="btn btn-success btn-sm" ng-click="vm.save(item)" ng-show="item.editMode" ng-disabled="ptForm.$invalid"><i class="fa fa-save"></i></button>
+    <button class="btn btn-success btn-sm" ng-click="vm.cancel(item)" ng-show="item.editMode"><i class="fa fa-undo"></i></button>
+    <button class="btn btn-danger btn-sm" ng-click="vm.delete(item)" ng-hide="item.editMode" ng-disabled="vm.editMode"><i class="fa fa-remove"></i></button>
+</td>

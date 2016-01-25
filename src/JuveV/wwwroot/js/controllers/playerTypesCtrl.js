@@ -1,12 +1,14 @@
 ﻿(function() {
-    function playerTypesController($resource) {
+    function playerTypesController($resource, $http) {
         var vm = this;
         vm.playerTypes = [];
         vm.editMode = false;
         vm.editedEntity = {};
 
+        vm.isLoading = true;
         $resource('/api/playertype').query(function (response) {
             angular.copy(response, vm.playerTypes);
+            vm.isLoading = false;
         });
 
         vm.edit = function (type) {

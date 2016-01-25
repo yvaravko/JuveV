@@ -6,42 +6,30 @@
 @section Scripts
 {
     <script src="~/js/controllers/playertypesctrl.js"></script>
+    <script src="~/js/directives/controls.js"></script>
 }
 
 <div class="container">
     <div class="row">
-    <h2 class="text-center">@ViewBag.Title</h2>
-    <div ng-controller="playerTypes as vm">
-        <table class="table table-bordered table-hover table-condensed table-striped no-border">
-            <tr>
-                <th class="col-md-1">ID</th>
-                <th class="col-md-3">Name</th>
-                <th class="col-md-2"></th>
-            </tr>
-            <tr ng-repeat="type in vm.playerTypes" ng-form name='ptForm'>
-                <td>{{type.id}}</td>
-                <td>
-                    <span ng-hide="type.editMode">{{type.type}}</span>
-                    <input name="txtPlayerType" ng-show="type.editMode" ng-model="type.type" required="required"/>
-                    <span class="error" ng-show="ptForm.txtPlayerType.$error.required">Name is required!</span>
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-success btn-sm" ng-click="vm.edit(type)" ng-hide="type.editMode" ng-disabled="vm.editMode"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-success btn-sm" ng-click="vm.save(type)" ng-show="type.editMode" ng-disabled="ptForm.$invalid"><i class="fa fa-save"></i></button>
-                    <button class="btn btn-success btn-sm" ng-click="vm.cancel(type)" ng-show="type.editMode"><i class="fa fa-undo"></i></button>
-                    <button class="btn btn-danger btn-sm" ng-click="vm.delete(type)" ng-hide="type.editMode" ng-disabled="vm.editMode"><i class="fa fa-remove"></i></button>
-                </td>
-            </tr>
-            <tr class="no-border">
-                <td></td>
-                <td></td>
-                <td class="col-md-2 text-center">
-                    <button class="btn btn-success" ng-click="vm.insert()" ng-disabled="vm.editMode">add new row...</button>
-                </td>
-            </tr>
-            <tr>
-
-            </tr>
-        </table>
+        <h2 class="text-center">@ViewBag.Title</h2>
+        <div ng-controller="playerTypes as vm">
+            <table ng-hide="vm.isLoading" class="table table-bordered table-hover table-condensed table-striped no-border">
+                <tr>
+                    <th class="col-md-1">ID</th>
+                    <th class="col-md-9">Name</th>
+                    <th class="col-md-2"></th>
+                </tr>
+                <tr ng-repeat="item in vm.playerTypes" ng-form name="ptForm">
+                    <td>{{item.id}}</td>
+                    <td>
+                        <span ng-hide="item.editMode">{{item.type}}</span>
+                        <input name="txtPlayerType" ng-show="item.editMode" ng-model="item.type" required="required"/>
+                        <span class="error" ng-show="ptForm.txtPlayerType.$error.required ">Name is required!</span>
+                    </td>
+                    <td crud-buttons/>
+                </tr>
+                <tr add-new-row/>
+            </table>
+        </div>
     </div>
 </div>
