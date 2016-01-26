@@ -53,7 +53,7 @@ namespace JuveV
         private static void RegisterRepositories(IServiceCollection services)
         {
             services.AddScoped<ITeamRepository, TeamRepository>();
-            services.AddScoped<IPlayerTypeRepository<PlayerType>, PlayerTypeRepository>();
+            services.AddScoped<IPlayerTypeRepository, PlayerTypeRepository>();
         }
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);

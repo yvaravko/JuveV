@@ -2,7 +2,7 @@
 
 namespace DataAccess.Contracts
 {
-    public interface IPlayerTypeRepository<T> : IBaseRepository<T> where T : BaseEntityWithId
+    public interface IPlayerTypeRepository : IBaseRepository<PlayerType>
     {
     }
 }

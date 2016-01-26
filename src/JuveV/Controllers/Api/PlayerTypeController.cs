@@ -10,10 +10,10 @@ namespace JuveV.Controllers.Api
     [Route("api/[controller]")]
     public class PlayerTypeController : Controller
     {
-        private readonly IPlayerTypeRepository<PlayerType> _repository;
+        private readonly IPlayerTypeRepository _repository;
         private readonly ILogger<PlayerTypeController> _logger;
 
-        public PlayerTypeController(IPlayerTypeRepository<PlayerType> playerTypeRepository, ILogger<PlayerTypeController> logger)
+        public PlayerTypeController(IPlayerTypeRepository playerTypeRepository, ILogger<PlayerTypeController> logger)
         {
             _repository = playerTypeRepository;
             _logger = logger;
