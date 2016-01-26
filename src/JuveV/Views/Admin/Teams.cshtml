@@ -3,4 +3,38 @@
     Layout = "_AdminLayout";
 }
 
-<h2>teams implementation will be here...</h2>
+@section Scripts
+{
+    <script src="~/js/controllers/teamsctrl.js"></script>
+    <script src="~/js/directives/controls.js"></script>
+}
+
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">@ViewBag.Title</h2>
+        <div ng-controller="teamsController as vm">
+            <table ng-hide="vm.isLoading" class="table table-bordered table-hover table-condensed table-striped no-border">
+                <tr>
+                    <th class="col-md-1">ID</th>
+                    <th class="col-md-6">Name</th>
+                    <th class="col-md-3">Country</th>
+                    <th class="col-md-2"></th>
+                </tr>
+                <tr ng-repeat="item in vm.teams" ng-form name="ptForm">
+                    <td>{{item.id}}</td>
+                    <td>
+                        <span ng-hide="item.editMode">{{item.name}}</span>
+                        <input name="txtTeamName" ng-show="item.editMode" ng-model="item.name" required="required"/>
+                        <span class="error" ng-show="ptForm.txtPlayerType.$error.required ">Name is required!</span>
+                    </td>
+                    <td>
+                        <span ng-hide="item.editMode">{{item.country.name}}</span>
+                        <select ng-show="item.editMode" ng-options="country.id as country.name for country in vm.countries" ng-model="item.selectedCountry"></select>
+                    </td>
+                    <td crud-buttons />
+                </tr>
+                <tr add-new-row />
+            </table>
+        </div>
+    </div>
+</div>

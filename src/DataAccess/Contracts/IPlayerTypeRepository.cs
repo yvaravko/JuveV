@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DataAccess.Domain;
+﻿using DataAccess.Domain;
 
 namespace DataAccess.Contracts
 {

@@ -63,7 +63,6 @@ namespace JuveV.Controllers.Api
             }
         }
 
-        // POST api/values
         [HttpPost]
         public JsonResult Post([FromBody] PlayerType vm)
         {
@@ -81,7 +80,6 @@ namespace JuveV.Controllers.Api
             }
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public JsonResult Put(int id, [FromBody] PlayerType vm)
         {
@@ -99,7 +97,6 @@ namespace JuveV.Controllers.Api
             }
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {

@@ -14,17 +14,17 @@ namespace DataAccess.Contracts
             _context = new JuveDbContext();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return DbSet().FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<T> GetList()
+        public virtual IEnumerable<T> GetList()
         {
             return DbSet().ToList();
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             if (IsDetached(entity))
             {
@@ -35,7 +35,7 @@ namespace DataAccess.Contracts
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var entity = GetById(id);
             if (entity != null)
@@ -45,7 +45,7 @@ namespace DataAccess.Contracts
             }
         }
 
-        public int Create(T entity)
+        public virtual int Create(T entity)
         {
             var added = DbSet().Add(entity);
             _context.Entry(entity).State = EntityState.Added;
@@ -53,7 +53,7 @@ namespace DataAccess.Contracts
             return added.Entity.Id;
         }
 
-        public DbSet<T> DbSet()
+        protected DbSet<T> DbSet()
         {
             return _context.Set<T>();
         }

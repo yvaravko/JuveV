@@ -23,6 +23,26 @@ namespace DataAccess
 
                     ctx.SaveChanges();
                 }
+
+                if (!ctx.Countries.Any())
+                {
+                    ctx.Countries.AddRange(
+                        new Country {Name = "Italy"},
+                        new Country {Name = "Spain"},
+                        new Country {Name = "France"},
+                        new Country {Name = "England"},
+                        new Country {Name = "Germany"}
+                        );
+
+                    ctx.SaveChanges();
+                }
+
+                if (!ctx.Teams.Any())
+                {
+                    var country = ctx.Countries.FirstOrDefault(x => x.Name == "Italy");
+                    ctx.Teams.Add(new Team {Name = "Juventus", Country = country});
+                    ctx.SaveChanges();
+                }
             }
         }
 

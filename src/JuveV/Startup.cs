@@ -52,6 +52,7 @@ namespace JuveV
 
         private static void RegisterRepositories(IServiceCollection services)
         {
+            services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IPlayerTypeRepository<PlayerType>, PlayerTypeRepository>();
         }
 
