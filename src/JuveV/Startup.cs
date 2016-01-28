@@ -1,6 +1,5 @@
 ﻿using DataAccess;
 using DataAccess.Contracts;
-using DataAccess.Domain;
 using DataAccess.Repos;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;

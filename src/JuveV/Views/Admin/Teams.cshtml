@@ -9,10 +9,13 @@
     <script src="~/js/directives/controls.js"></script>
 }
 
-<div class="container">
+<div class="container" ng-controller="teamsController as vm">
     <div class="row">
         <h2 class="text-center">@ViewBag.Title</h2>
-        <div ng-controller="teamsController as vm">
+        <div class="form-group">
+            <input type="search" placeholder="search" class="form-control" ng-model="vm.searchValue" ng-keypress="vm.search($event)" />
+        </div>
+        <div>
             <table ng-hide="vm.isLoading" class="table table-bordered table-hover table-condensed table-striped no-border">
                 <tr>
                     <th class="col-md-1">ID</th>
@@ -25,11 +28,12 @@
                     <td>
                         <span ng-hide="item.editMode">{{item.name}}</span>
                         <input name="txtTeamName" ng-show="item.editMode" ng-model="item.name" required="required"/>
-                        <span class="error" ng-show="ptForm.txtPlayerType.$error.required ">Name is required!</span>
+                        <span class="error" ng-show="ptForm.txtPlayerType.$error.required">Name is required!</span>
                     </td>
                     <td>
                         <span ng-hide="item.editMode">{{item.country.name}}</span>
-                        <select ng-show="item.editMode" ng-options="country.id as country.name for country in vm.countries" ng-model="item.selectedCountry"></select>
+                        <select ng-show="item.editMode" ng-options="country as country.name for country in vm.countries track by country.name" 
+                                ng-model="item.country" required="required"></select>
                     </td>
                     <td crud-buttons />
                 </tr>

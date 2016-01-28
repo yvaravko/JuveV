@@ -40,7 +40,7 @@ namespace DataAccess
                 if (!ctx.Teams.Any())
                 {
                     var country = ctx.Countries.FirstOrDefault(x => x.Name == "Italy");
-                    ctx.Teams.Add(new Team {Name = "Juventus", Country = country});
+                    ctx.Teams.Add(new Team {Name = "Juventus", CountryId = country.Id, Country = country});
                     ctx.SaveChanges();
                 }
             }

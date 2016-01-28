@@ -1,6 +1,4 @@
-﻿using DataAccess.Contracts;
-using DataAccess.Domain;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Mvc;
 
 namespace JuveV.Controllers
 {
@@ -20,6 +18,5 @@ namespace JuveV.Controllers
         {
             return View();
         }
-
     }
 }

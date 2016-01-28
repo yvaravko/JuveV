@@ -15,14 +15,14 @@
         <h1>Header will be here</h1>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-4 col-sm-4">
             <ul class="nav top60" ng-controller="navCtrl as vm">
                 <li ng-class="{ active: vm.isActive('/Index') }"><a asp-controller="Admin" asp-action="Index">Home</a></li>
                 <li ng-class="{ active: vm.isActive('/PlayerTypes') }"><a asp-controller="Admin" asp-action="PlayerTypes">Player Types</a></li>
                 <li ng-class="{ active: vm.isActive('/Teams') }"><a asp-controller="Admin" asp-action="Teams">Teams</a></li>
             </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8 col-sm-8">
             @RenderBody()
         </div>
     </div>
