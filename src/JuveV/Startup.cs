@@ -53,6 +53,7 @@ namespace JuveV
         {
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IPlayerTypeRepository, PlayerTypeRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
         }
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);

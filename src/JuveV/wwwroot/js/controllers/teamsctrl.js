@@ -2,14 +2,14 @@
     function() {
         angular.module('admin-main').controller('teamsController', teamsController);
 
-        function teamsController($resource) {
+        function teamsController($resource, $window, countriesService) {
             var vm = this;
             vm.teams = [];
             vm.editMode = false;
             vm.editedEntity = {};
             vm.isLoading = true;
 
-            vm.countries = [{ id: 1, name: "Italy" }, { id: 2, name: "Spain" }, { id: 3, name: "France" }];
+            vm.countries = countriesService.getAllCountries();
 
             $resource('/api/team').query(function(response) {
                 angular.copy(response, vm.teams);
@@ -33,6 +33,7 @@
                     type.country = vm.editedEntity.country;
                     vm.editedEntity = {};
                 }
+                vm.$apply();
             }
 
             vm.delete = function (type) {
@@ -74,6 +75,22 @@
                     });
                 }
             }
+
+            angular.element($window).bind("keydown", function ($event) {
+                if ($event.ctrlKey && $event.keyCode == 83) {
+                    $event.preventDefault();
+                    if (vm.editMode) {
+                        var typeInEdit = _.filter(vm.teams, function (element) {
+                            return element.editMode;
+                        });
+
+                        if (typeInEdit.length = 1) {
+                            vm.save(typeInEdit[0]);
+                        }
+                    }
+                }
+            });
+
         }
     }
 )();
