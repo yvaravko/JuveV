@@ -17,3 +17,16 @@ tr.no-border td {
 li.active {
     font-weight: bold;  
 }
+
+.selectedRow {
+    background-color: #00bfff !important;
+}
+
+.table {
+    cursor: pointer;
+}
+
+.team-container {
+    height: 300px !important;
+    overflow-y: scroll;
+}

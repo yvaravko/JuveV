@@ -1,5 +1,5 @@
 ﻿(function() {
-    function playerTypesController($resource, $http) {
+    function playerTypesController($resource) {
         var vm = this;
         vm.playerTypes = [];
         vm.editMode = false;

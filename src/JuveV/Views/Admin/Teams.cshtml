@@ -14,9 +14,9 @@
     <div class="row">
         <h2 class="text-center">@ViewBag.Title</h2>
         <div class="form-group">
-            <input type="search" placeholder="search" class="form-control" ng-model="vm.searchValue" ng-keypress="vm.search($event)" />
+            <input type="search" placeholder="search" class="form-control" ng-model="vm.searchValue" ng-keypress="vm.search($event)"/>
         </div>
-        <div>
+        <div class="team-container">
             <table ng-hide="vm.isLoading" class="table table-bordered table-hover table-condensed table-striped no-border">
                 <tr>
                     <th class="col-md-1">ID</th>
@@ -24,7 +24,7 @@
                     <th class="col-md-3">Country</th>
                     <th class="col-md-2"></th>
                 </tr>
-                <tr ng-repeat="item in vm.teams" ng-form name="ptForm">
+                <tr ng-click="vm.selectRow(item)" ng-repeat="item in vm.teams" ng-form name="ptForm" ng-class="{selectedRow: item.name == vm.selectedTeam}">
                     <td>{{item.id}}</td>
                     <td>
                         <span ng-hide="item.editMode">{{item.name}}</span>
@@ -33,13 +33,30 @@
                     </td>
                     <td>
                         <span ng-hide="item.editMode">{{item.country.name}}</span>
-                        <select ng-show="item.editMode" ng-options="country as country.name for country in vm.countries track by country.name" 
-                                ng-model="item.country" required="required"></select>
+                        <select ng-show="item.editMode" ng-options="country as country.name for country in vm.countries track by country.name"
+                                ng-model="item.country" required="required">
+                        </select>
                     </td>
-                    <td crud-buttons />
+                    <td crud-buttons/>
                 </tr>
-                <tr add-new-row />
+                <tr add-new-row/>
             </table>
         </div>
+    </div>
+    <div class="row" ng-show="vm.players.length">
+        <h3> {{ vm.selectedTeam }} players </h3>
+        <table class="table table-bordered table-hover table-condensed table-striped no-border">
+            <tr ng-repeat="player in vm.players">
+                <td>
+                    {{player.id}}
+                </td>
+                <td>
+                    {{player.fname}}
+                </td>
+                <td>
+                    {{player.lname}}
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

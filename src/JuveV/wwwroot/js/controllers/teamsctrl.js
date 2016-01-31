@@ -8,6 +8,7 @@
             vm.editMode = false;
             vm.editedEntity = {};
             vm.isLoading = true;
+            vm.players = [];
 
             vm.countries = countriesService.getAllCountries();
 
@@ -75,6 +76,12 @@
                     });
                 }
             }
+
+            vm.selectRow = function(type) {
+                vm.selectedTeam = type.name;
+                vm.players = [{ id: 1, fname: 'Lionel', lname: 'Messi' }, { id: 2, fname: 'Luis', lname: 'Suarez' }, { id: 3, fname: 'Serchio', lname: 'Buskets' }];
+            }
+           
 
             angular.element($window).bind("keydown", function ($event) {
                 if ($event.ctrlKey && $event.keyCode == 83) {
