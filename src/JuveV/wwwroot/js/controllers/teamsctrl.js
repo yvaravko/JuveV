@@ -2,7 +2,7 @@
     function() {
         angular.module('admin-main').controller('teamsController', teamsController);
 
-        function teamsController($resource, $window, countriesService) {
+        function teamsController($resource, $window, countriesService, focus) {
             var vm = this;
             vm.teams = [];
             vm.editMode = false;
@@ -18,6 +18,7 @@
             });
 
             vm.edit = function (type) {
+                focus('focusMe');
                 angular.copy(type, vm.editedEntity);
                 type.editMode = true;
                 vm.editMode = true;
@@ -63,6 +64,7 @@
             };
 
             vm.insert = function () {
+                focus('focusMe');
                 var type = {};
                 vm.teams.push(type);
                 type.editMode = true;
@@ -84,14 +86,14 @@
            
 
             angular.element($window).bind("keydown", function ($event) {
-                if ($event.ctrlKey && $event.keyCode == 83) {
+                if ($event.ctrlKey && $event.keyCode === 83) {
                     $event.preventDefault();
                     if (vm.editMode) {
                         var typeInEdit = _.filter(vm.teams, function (element) {
                             return element.editMode;
                         });
 
-                        if (typeInEdit.length = 1) {
+                        if (typeInEdit.length === 1) {
                             vm.save(typeInEdit[0]);
                         }
                     }

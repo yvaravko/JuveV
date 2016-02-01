@@ -24,7 +24,7 @@
                     <td>{{item.id}}</td>
                     <td>
                         <span ng-hide="item.editMode">{{item.type}}</span>
-                        <input name="txtPlayerType" ng-show="item.editMode" ng-model="item.type" required="required"/>
+                        <input name="txtPlayerType" ng-show="item.editMode" ng-model="item.type" focus-on="focusMe" required="required"/>
                         <span class="error" ng-show="ptForm.txtPlayerType.$error.required ">Name is required!</span>
                     </td>
                     <td crud-buttons/>

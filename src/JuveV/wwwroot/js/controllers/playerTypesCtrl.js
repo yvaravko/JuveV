@@ -1,5 +1,5 @@
 ﻿(function() {
-    function playerTypesController($resource) {
+    function playerTypesController($resource, $window, focus) {
         var vm = this;
         vm.playerTypes = [];
         vm.editMode = false;
@@ -12,6 +12,7 @@
         });
 
         vm.edit = function (type) {
+            focus('focusMe');
             angular.copy(type, vm.editedEntity);
             type.editMode = true;
             vm.editMode = true;
@@ -54,11 +55,27 @@
         }
 
         vm.insert = function () {
+            focus('focusMe');
             var type = {};
             vm.playerTypes.push(type);
             type.editMode = true;
             vm.editMode = true;
         };
+
+        angular.element($window).bind("keydown", function ($event) {
+            if ($event.ctrlKey && $event.keyCode === 83) {
+                $event.preventDefault();
+                if (vm.editMode) {
+                    var typeInEdit = _.filter(vm.playerTypes, function (element) {
+                        return element.editMode;
+                    });
+
+                    if (typeInEdit.length === 1) {
+                        vm.save(typeInEdit[0]);
+                    }
+                }
+            }
+        });
     }
 
     angular.module('admin-main').controller('playerTypes', playerTypesController);

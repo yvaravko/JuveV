@@ -15,6 +15,27 @@
         }
     };
 
-    angular.module('admin-main').directive('addNewRow', addNewRow);
-    angular.module('admin-main').directive('crudButtons', crudButtons);
+    function focusOn() {
+        return function(scope, elem, attr) {
+            scope.$on('focusOn', function (e, name) {
+                if (name === attr.focusOn) {
+                    elem[0].focus();
+                }
+            });
+        }
+    };
+
+    var main = angular.module('admin-main');
+
+    main.directive('addNewRow', addNewRow);
+    main.directive('crudButtons', crudButtons);
+    main.directive('focusOn', focusOn);
+
+    main.factory('focus', function ($rootScope, $timeout) {
+        return function (name) {
+            $timeout(function () {
+                $rootScope.$broadcast('focusOn', name);
+            });
+        }
+    });
 })();
