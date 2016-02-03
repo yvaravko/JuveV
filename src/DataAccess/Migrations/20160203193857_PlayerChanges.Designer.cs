@@ -8,9 +8,10 @@ using DataAccess;
 namespace dataaccess.Migrations
 {
     [DbContext(typeof(JuveDbContext))]
-    partial class JuveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160203193857_PlayerChanges")]
+    partial class PlayerChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -39,13 +40,11 @@ namespace dataaccess.Migrations
 
                     b.Property<DateTime?>("EndDate");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<string>("FirstName");
 
                     b.Property<int?>("Height");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<string>("LastName");
 
                     b.Property<string>("Note");
 

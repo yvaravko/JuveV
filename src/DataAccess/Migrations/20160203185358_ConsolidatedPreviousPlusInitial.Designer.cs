@@ -5,11 +5,11 @@ using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using DataAccess;
 
-namespace DataAccess.Migrations
+namespace dataaccess.Migrations
 {
     [DbContext(typeof(JuveDbContext))]
-    [Migration("20160110193253_videos")]
-    partial class videos
+    [Migration("20160203185358_ConsolidatedPreviousPlusInitial")]
+    partial class ConsolidatedPreviousPlusInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,40 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("DataAccess.Domain.Player", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("BirthDate");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<int>("CurrentTeamId");
+
+                    b.Property<DateTime?>("EndDate");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<int>("Height");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Note");
+
+                    b.Property<string>("Photo");
+
+                    b.Property<int>("PlayerTypeId");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<int>("TeamNumber");
+
+                    b.Property<int>("Weight");
 
                     b.HasKey("Id");
                 });
@@ -51,12 +85,27 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Domain.Video", b =>
                 {
-                    b.Property<int>("VideoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("VideoExerpt");
 
-                    b.HasKey("VideoId");
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("DataAccess.Domain.Player", b =>
+                {
+                    b.HasOne("DataAccess.Domain.Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.HasOne("DataAccess.Domain.Team")
+                        .WithMany()
+                        .HasForeignKey("CurrentTeamId");
+
+                    b.HasOne("DataAccess.Domain.PlayerType")
+                        .WithMany()
+                        .HasForeignKey("PlayerTypeId");
                 });
 
             modelBuilder.Entity("DataAccess.Domain.Team", b =>

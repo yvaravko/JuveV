@@ -18,5 +18,11 @@ namespace JuveV.Controllers
         {
             return View();
         }
+
+        public IActionResult Players()
+        {
+            return View();
+        }
+
     }
 }

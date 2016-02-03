@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using DataAccess.Domain;
+﻿using DataAccess.Domain;
 
 namespace DataAccess.Contracts
 {
-    public interface ITeamRepository : IBaseRepository<Team>
+    public interface ITeamRepository : IBaseRepository<Team>, ISearchable<Team>
     {
-        IEnumerable<Team> Search(string value);
     }
 }
