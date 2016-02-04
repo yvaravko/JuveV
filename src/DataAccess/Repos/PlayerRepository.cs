@@ -45,7 +45,7 @@ namespace DataAccess.Repos
                 return new[] { GetById(id) };
             }
 
-            return DbSet().Include(x => x.Country).Where(x => x.LastName.Contains(value) || x.Country.Name == value);
+            return DbSet().Include(x => x.CurrentTeam).Where(x => x.LastName.Contains(value));
         }
     }
 }

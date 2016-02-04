@@ -12,9 +12,9 @@ namespace JuveV.Controllers.Api
         private readonly ILogger<PlayerController> _logger;
         private readonly IPlayerRepository _repository;
 
-        public PlayerController(IPlayerRepository playerTypeRepository, ILogger<PlayerController> logger)
+        public PlayerController(IPlayerRepository playerRepository, ILogger<PlayerController> logger)
         {
-            _repository = playerTypeRepository;
+            _repository = playerRepository;
             _logger = logger;
         }
 
@@ -59,6 +59,29 @@ namespace JuveV.Controllers.Api
                 Response.StatusCode = (int) HttpStatusCode.BadRequest;
                 _logger.LogError($"Error occurred getting player with id = {id}", ex);
                 return Json("Error occurred getting player");
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/player/search/{value}")]
+        public JsonResult Search(string value)
+        {
+            try
+            {
+                var results = _repository.Search(value);
+
+                if (results == null)
+                {
+                    return Json(null);
+                }
+
+                return Json(results);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int) HttpStatusCode.BadRequest;
+                _logger.LogError("Error occurred getting players", ex);
+                return Json("Error occurred getting players");
             }
         }
 

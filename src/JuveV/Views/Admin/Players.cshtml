@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Players";
+    Layout = "_AdminLayout";
+}
+
+@section Scripts
+{
+    <script src="~/js/controllers/playersctrl.js"></script>
+    <script src="~/js/directives/controls.js"></script>
+}
+
+<div class="container" ng-controller="playersCtrl as vm">
+    <div class="row">
+        <h2 class="text-center">@ViewBag.Title</h2>
+        <div class="form-group">
+            <input type="search" placeholder="search" class="form-control" ng-model="vm.searchValue" ng-keypress="vm.search($event)" />
+        </div>
+        <div>
+            <table ng-hide="vm.isLoading" class="table table-bordered table-hover table-condensed table-striped no-border">
+                <tr>
+                    <th class="col-md-1">ID</th>
+                    <th class="col-md-2">First Name</th>
+                    <th class="col-md-2">Last Name</th>
+                    <th class="col-md-2">Team</th>
+                    <th class="col-md-2">TeamNumber</th>
+                    <th class="col-md-2"></th>
+                </tr>
+                <tr ng-repeat="item in vm.players" ng-form name="ptForm">
+                    <td>{{item.id}}</td>
+                    <td>
+                        <span>{{item.firstName}}</span></td>
+                    <td>
+                        <span>{{item.lastName}}</span>
+                    </td>
+                    <td>
+                        <span>{{item.currentTeam.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{item.teamNumber}}</span>
+                    </td>
+                    <td />
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
