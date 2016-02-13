@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Mvc;
 
 namespace JuveV.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public IActionResult Index()

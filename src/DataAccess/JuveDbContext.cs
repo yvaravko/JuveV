@@ -2,16 +2,12 @@
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
 using System.Linq;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DataAccess
 {
-    public class JuveDbContext : DbContext
+    public class JuveDbContext : IdentityDbContext<ApplicationUser>
     {
-        public JuveDbContext()
-        {
-            //Database.EnsureCreated();
-        }
-
         public DbSet<PlayerType> PlayerTypes { get; set; }
 
         public DbSet<Country> Countries { get; set; }
@@ -34,6 +30,8 @@ namespace DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;

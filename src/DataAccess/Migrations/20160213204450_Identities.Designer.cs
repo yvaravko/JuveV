@@ -8,9 +8,10 @@ using DataAccess;
 namespace dataaccess.Migrations
 {
     [DbContext(typeof(JuveDbContext))]
-    partial class JuveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160213204450_Identities")]
+    partial class Identities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
