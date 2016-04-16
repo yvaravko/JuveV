@@ -1,0 +1,100 @@
+[33mcommit 654e010dab94cb49ea5e1966ace19c67fa3ccc21[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sun Apr 10 10:43:55 2016 +0300
+
+    test commit
+
+[33mcommit 2d223f16233b9802fb40b423b8188a17d7a4652f[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sun Feb 14 01:52:55 2016 +0300
+
+    added authorization
+
+[33mcommit de4946f44f07fcd7c9b09c8b6c8052c1167888fc[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Thu Feb 4 23:01:57 2016 +0300
+
+    players page
+
+[33mcommit aaead97fbc37b692d411895d1a0fd7b03f8fdb90[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Wed Feb 3 23:35:32 2016 +0300
+
+    changes in migrations
+    players repo
+    players controller
+
+[33mcommit 5e564d2a8ba0342b12b8b756c78d7c3d6aaf63e5[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Mon Feb 1 23:59:23 2016 +0300
+
+    focus-on directive
+
+[33mcommit 01d5a8c236100f24b56cd822468f7a1eb06cc671[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sun Jan 31 22:40:13 2016 +0300
+
+    some changes on Team page
+    added master detail mockup
+
+[33mcommit 45f1a810cb5da54dc281d262853111a3d9639859[m
+Author: yv <vvdfhfn@ttt1.com>
+Date:   Fri Jan 29 14:51:31 2016 +0300
+
+    added countryrepo
+    added angular service
+    added hot keys support
+
+[33mcommit c2fa203ad5fc716126573d73570b21014c45c27f[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Fri Jan 29 00:16:15 2016 +0300
+
+    teams finish crud
+    search
+
+[33mcommit beac2f803b4057740777504c2c6e9d07f6edbcdc[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Tue Jan 26 23:22:20 2016 +0300
+
+    fixed IPlayerTypeRepository interface
+
+[33mcommit c0a688e1f38b287776bcb25df726bad67c7eeeab[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Tue Jan 26 23:19:02 2016 +0300
+
+    initial commit for teams repo, page, api controller
+
+[33mcommit ad201500f585d4d1c0f38c244c561605e3753e3b[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Tue Jan 26 00:08:30 2016 +0300
+
+    added common directives
+
+[33mcommit 14bab66f2974528923da62cc2642e557c12a777a[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sun Jan 24 23:07:46 2016 +0300
+
+    some UI fixes for PT page
+    menu in Admin layout with highlighted selection
+    added and used tagHelper lib
+    added some new stub pages
+
+[33mcommit c5c02d2c01a20986292394c6128ebb7c537cedfa[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sat Jan 23 23:34:03 2016 +0300
+
+    added crud to player types page
+    fixed styling using bootstrap (slightly)
+    added font-awesome
+
+[33mcommit ac4bf10f8757091df86ba424600637a0c80fddad[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sat Jan 23 00:42:31 2016 +0300
+
+    initial commit v2
+
+[33mcommit af4089d909a51adcb98d3cf615d0cc76e2b538e4[m
+Author: yvaravko <yuri.varavko@tut.by>
+Date:   Sat Jan 23 00:38:37 2016 +0300
+
+    Initial commit to add default .gitIgnore and .gitAttribute files.
